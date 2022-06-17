@@ -17,6 +17,7 @@ body{
             background-size: cover;
             border-radius: 15px;
             box-shadow: 5px 5px black;
+            
 
             .container__form{
                 width: 500px;
@@ -27,6 +28,7 @@ body{
                 justify-content: center;
                 gap: 10px;
                 background-color: rgb(0, 0, 0, 0.2);
+                border-radius: 15px;
 
                 .form__input-text{
                     width: 300px;
@@ -46,6 +48,7 @@ body{
                 display: flex;
                 flex-wrap: wrap;
                 background-color: rgb(0, 0, 0, 0.2);
+                border-radius: 15px;
 
                 .weather__temp{
                     margin: 0;
@@ -61,6 +64,49 @@ body{
                 .weather__infos{
                     width:500px;
                     height: 300px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 0;
+
+                    .infos__desc{
+                        width:250px;
+                        height: 100px;
+                        margin: 0;
+                        display: flex;
+                        justify-content: center;
+                        text-align: center
+                    }
+
+                    .infos__wind{
+                        @extend .infos__desc;
+                        margin: 0;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .infos__nextdays{
+                        width:100px;
+                        height: 200px;
+                        font-size: 0.9rem;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-between;
+                        text-align: center;
+
+                        .nextdays__desc{
+                            margin: 0;
+                            height: 50px;
+                        }
+
+                        img{
+                            width:50%;
+                            height: 30%;
+                            margin-bottom: 30%;
+                            display: none;
+                        }
+                    }
                 }
             }
 
