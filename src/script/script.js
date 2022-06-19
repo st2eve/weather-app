@@ -154,13 +154,19 @@ function getCityName(){
         }else if(recupDesc == 'orage' || recupDesc == 'orageux'){
             selectMainContainer.setAttribute('style', 'background-image: url("https://i.gifer.com/Rnim.gif"); background-repeat: no-repeat; background-size: cover;')
         }else if(recupDesc == 'pluie' || recupDesc == 'pluvieux' || recupDesc == 'pluie modérée' || recupDesc == 'légère pluie'){
-            selectMainContainer.setAttribute('style', 'background-image: url("https://i.gifer.com/DbH.gif"); background-repeat: no-repeat; background-size: cover;')
+            selectMainContainer.setAttribute('style', 'background-image: url("https://i.gifer.com/JTCO.gif"); background-repeat: no-repeat; background-size: cover;')
         }
     })
     .catch(err => alert('You entered Wrong city name'))
 
 }
 
+
+selectContainerForm.addEventListener('keydown', event => {
+    if (event.which === 13) {
+        event.preventDefault();
+        getForecast();
+    }
+})
+
 selectFormInputButton.addEventListener('click', getForecast)
-
-

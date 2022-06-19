@@ -29,7 +29,7 @@ body main .main__container .container__form {
           justify-content: center;
   gap: 10px;
   background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
+  border-radius: 15px 15px 0 0;
 }
 body main .main__container .container__form .form__input-text {
   width: 300px;
@@ -51,7 +51,7 @@ body main .main__container .container__weather {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
+  border-radius: 0 0 15px 15px;
 }
 body main .main__container .container__weather .weather__temp, body main .main__container .container__weather .weather__city {
   margin: 0;

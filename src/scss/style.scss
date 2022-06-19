@@ -28,7 +28,7 @@ body{
                 justify-content: center;
                 gap: 10px;
                 background-color: rgb(0, 0, 0, 0.2);
-                border-radius: 15px;
+                border-radius: 15px 15px 0 0;
 
                 .form__input-text{
                     width: 300px;
@@ -48,7 +48,7 @@ body{
                 display: flex;
                 flex-wrap: wrap;
                 background-color: rgb(0, 0, 0, 0.2);
-                border-radius: 15px;
+                border-radius: 0 0 15px 15px;
 
                 .weather__temp{
                     margin: 0;
