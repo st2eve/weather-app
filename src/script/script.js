@@ -224,8 +224,12 @@ function getCityName(){
     .catch(err => alert('You entered Wrong city name'))
 
     
-    selectButtonCompare.setAttribute('style', 'display: block')
-    selectBlockCompare.setAttribute('style', 'display: none')
+    if(selectBlockCompare.getAttribute('style') != null){
+        selectButtonCompare.setAttribute('style', 'display: none')
+    }else{
+        selectButtonCompare.setAttribute('style', 'display: block')
+    }
+
     const selectTitle = document.querySelector('.main__title')
     selectTitle.setAttribute('style', 'display: none')
     
