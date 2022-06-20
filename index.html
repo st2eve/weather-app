@@ -5,31 +5,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="src/css/style.min.css">
     <script defer src="src/script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <main>
-        
+        <h1>
+            Becode project : Weather App
+        </h1>
         <div class="main__container">
             <form class="container__form">
-                <input placeholder="Chose a city..." class="form__input-text" type="text">
-                <input value="Submit" class="form__input-button" type="button">
+                <input placeholder="Choisissez une ville..." class="form__input-text" type="text">
+                <input value="Envoyez" class="form__input-button" type="button">
             </form>
             <div class="container__weather">
-                <p class="weather__temp">
-                    
-                </p>
                 <p class="weather__city">
 
                 </p>
+                <p class="weather__temp">
+                    
+                </p>
+                
                 <section class="weather__infos">
                     
                 </section>
             </div>
         </div>
+        <input type="button" value=">> Comparer ?" class="main__button-compare">
+        <div class="main__block-compare">
+            
+            <form class="compare__form-cityOne">
+                <input placeholder="Choisissez une ville..." class="form__input-cityOne" type="text">
+                <input value="Envoyez" class="form__input-buttonOne-compare" type="button">
+                <section class="compare__temp-cityOne">
+                    
+                </section>
+            </form>
+            <form class="compare__form-cityTwo">
+                <input placeholder="Choisissez une autre ville..." class="form__input-cityTwo" type="text">
+                <input value="Envoyez" class="form__input-buttonTwo-compare" type="button">
+                <section class="compare__temp-cityTwo">
+                    
+                </section>
+            </form>
+                
+        </div>
 
+        <div class="main__charts">
+            <canvas id="myChart"></canvas>
+        </div>
+        
     </main>
 
 </body>

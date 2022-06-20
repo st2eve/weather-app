@@ -6,8 +6,17 @@ const selectContainerWeather = document.querySelector('.container__weather')
 const selectWeatherTemp = document.querySelector('.weather__temp')
 const selectWeatherCity = document.querySelector('.weather__city')
 const selectWeatherInfos = document.querySelector('.weather__infos')
+const selectButtonCompare = document.querySelector('.main__button-compare')
+const selectBlockCompare = document.querySelector('.main__block-compare')
+const selectCityOne = document.querySelector('.form__input-cityOne')
+const selectCityTwo = document.querySelector('.form__input-cityTwo')
+const selectButtonCityOne = document.querySelector('.form__input-buttonOne-compare')
+const selectButtonCityTwo = document.querySelector('.form__input-buttonTwo-compare')
+const selectMain = document.querySelector('main')
 const apiKey = '7692fdfcc503a7509f924505444ba26a'
 let cityName = ""
+let cityNameOne = ""
+let cityNameTwo = ""
 const imgClass = ['infos__clear', 'infos__clouds', 'infos__abitclouds', 'infos__mist', 'infos__snow', 'infos__thunder', 'infos__rain']
 const imgSrc = ['src/img/sun.png', 'src/img/clouds.png', 'src/img/abitclouds.png', 'src/img/mist.png', 'src/img/snow.png', 'src/img/thunder.png', 'src/img/rain.png']
 
@@ -16,13 +25,14 @@ function getForecast(){
 
     getCityName()
 
+
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&cnt=5&appid=${apiKey}&units=metric&lang=fr`)
     .then(response => response.json())
-    .then(data => {
+    .then(dataBis => {
 
         for(let i = 0; i < 5; i++){
-            let recupForTemp = data['list'][i]['main']['temp']
-            let recupForcastDesc = data['list'][i]['weather'][0]['description']
+            let recupForTemp = dataBis['list'][i]['main']['temp']
+            let recupForcastDesc = dataBis['list'][i]['weather'][0]['description']
             let createArticle = document.createElement('article')
             createArticle.setAttribute('class', 'infos__nextdays')
 
@@ -85,21 +95,91 @@ function getForecast(){
                     infosDescsRains[i].setAttribute('style', 'display: initial')
                     
                 }
-            
-
+           
         }
 
-        
+        getChart()
 
     })
     .catch(err => alert('There is a problem with the coord of the city'))
 
+
 }
 
 
+function getChart(){
+
+    const canvasRemove = document.querySelector('#myChart')
+    canvasRemove.remove()
+    const createCanvas = document.createElement('canvas')
+    createCanvas.setAttribute('id', 'myChart')
+    const selectDivCanvas = document.querySelector('.main__charts')
+    selectDivCanvas.appendChild(createCanvas)
+
+    let selectTempCharts = document.querySelectorAll('.nextdays__temp')
+
+    let TempChartsA = selectTempCharts[0].innerHTML.match(/(\d+)/)
+    let TempChartsB = selectTempCharts[1].innerHTML.match(/(\d+)/)
+    let TempChartsC = selectTempCharts[2].innerHTML.match(/(\d+)/)
+    let TempChartsD = selectTempCharts[3].innerHTML.match(/(\d+)/)
+    let TempChartsE = selectTempCharts[4].innerHTML.match(/(\d+)/)
+
+
+    const labels = [
+        'jour 1',
+        'jour 2',
+        'jour 3',
+        'jour 4',
+        'jour 5',
+    ];
+    
+    const data = {
+        labels: labels,
+        datasets: [{
+          label: 'Temp. over days',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [TempChartsA[0], TempChartsB[0], TempChartsC[0], TempChartsD[0], TempChartsE[0]],
+        }]
+    };
+    
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+
+}
+
+function resetContent(){
+    selectWeatherTemp.innerHTML = ""
+    selectWeatherCity.innerHTML = ""
+
+    if(document.querySelector('.infos__wind')){
+
+        const removeWind = document.querySelector('.infos__wind')
+        const removeDesc = document.querySelector('.infos__desc')
+        const removeArticle = document.querySelectorAll('.infos__nextdays')
+
+        removeWind.remove()
+        removeDesc.remove()
+
+        for(let l = 0; l < removeArticle.length; l++){
+            removeArticle[l].remove()
+        }
+    }
+}
+
 function getCityName(){
 
-    
+    resetContent()
+
     cityName = selectFormInputText.value
 
 
@@ -111,33 +191,16 @@ function getCityName(){
         let recupTemp = data['main']['temp']
         let recupWind = data['wind']['speed']
 
-        selectWeatherTemp.innerHTML = ""
-        selectWeatherCity.innerHTML = ""
-
-        if(document.querySelector('.infos__wind')){
-
-            const removeWind = document.querySelector('.infos__wind')
-            const removeDesc = document.querySelector('.infos__desc')
-            const removeArticle = document.querySelectorAll('.infos__nextdays')
-
-            removeWind.remove()
-            removeDesc.remove()
-
-            for(let l = 0; l < removeArticle.length; l++){
-                removeArticle[l].remove()
-            }
-        }
+        let createPWind = document.createElement('p')
+        createPWind.setAttribute('class', 'infos__wind')
+        createPWind.innerHTML = `Vent : ${Math.round(recupWind*3.6)} km/h`
+        selectWeatherInfos.prepend(createPWind)
 
         let createPDesc = document.createElement('p')
         createPDesc.setAttribute('class', 'infos__desc')
         createPDesc.innerHTML = recupDesc
         selectWeatherInfos.prepend(createPDesc)
 
-        let createPWind = document.createElement('p')
-        createPWind.setAttribute('class', 'infos__wind')
-        createPWind.innerHTML = `Vent : ${Math.round(recupWind*3.6)} km/h`
-        selectWeatherInfos.prepend(createPWind)
-        
         selectWeatherTemp.innerHTML = `${recupTemp} °c`
         selectWeatherCity.innerHTML = recupName
 
@@ -159,8 +222,98 @@ function getCityName(){
     })
     .catch(err => alert('You entered Wrong city name'))
 
+    
+    selectButtonCompare.setAttribute('style', 'display: block')
+    selectBlockCompare.setAttribute('style', 'display: none')
+    const selectTitle = document.querySelector('h1')
+    selectTitle.remove()
+    
 }
 
+function cityCompareDisplay(){
+
+    selectMain.setAttribute('style', 'grid-template-columns: 2fr 1fr;')
+    selectButtonCompare.setAttribute('style', 'display: none')
+    selectBlockCompare.setAttribute('style', 'display: grid; grid-template-rows: 1fr 1fr; justify-content: center;')
+
+}
+
+
+function cityCompareOne(){
+
+    cityNameOne = selectCityOne.value
+
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameOne}&appid=${apiKey}&units=metric&lang=fr`)
+    .then(response => response.json())
+    .then(data => {
+
+        let recupName = data['name']
+        let recupDesc = data['weather']['0']['description']
+        let recupTemp = data['main']['temp']
+        let recupWind = data['wind']['speed']
+        let selectTempCityOne = document.querySelector('.compare__temp-cityOne')
+
+        let createPWind = document.createElement('p')
+        createPWind.setAttribute('class', 'infos__wind')
+        createPWind.innerHTML = `Vent : ${Math.round(recupWind*3.6)} km/h`
+        selectTempCityOne.prepend(createPWind)
+
+        let createPDesc = document.createElement('p')
+        createPDesc.setAttribute('class', 'infos__desc')
+        createPDesc.innerHTML = recupDesc
+        selectTempCityOne.prepend(createPDesc)
+
+        let createPTemp = document.createElement('p')
+        createPTemp.setAttribute('class', 'infos__temp')
+        createPTemp.innerHTML = `${recupTemp} °c`
+        selectTempCityOne.prepend(createPTemp)
+
+        let createPName = document.createElement('p')
+        createPName.setAttribute('class', 'infos__name')
+        createPName.innerHTML = recupName
+        selectTempCityOne.prepend(createPName)
+
+    })
+
+}
+
+function cityCompareTwo(){
+
+    cityNameTwo = selectCityTwo.value
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameTwo}&appid=${apiKey}&units=metric&lang=fr`)
+    .then(response => response.json())
+    .then(data => {
+
+        let recupName = data['name']
+        let recupDesc = data['weather']['0']['description']
+        let recupTemp = data['main']['temp']
+        let recupWind = data['wind']['speed']
+        let selectTempCityTwo = document.querySelector('.compare__temp-cityTwo')
+
+        let createPWind = document.createElement('p')
+        createPWind.setAttribute('class', 'infos__wind')
+        createPWind.innerHTML = `Vent : ${Math.round(recupWind*3.6)} km/h`
+        selectTempCityTwo.prepend(createPWind)
+
+        let createPDesc = document.createElement('p')
+        createPDesc.setAttribute('class', 'infos__desc')
+        createPDesc.innerHTML = recupDesc
+        selectTempCityTwo.prepend(createPDesc)
+
+        let createPTemp = document.createElement('p')
+        createPTemp.setAttribute('class', 'infos__temp')
+        createPTemp.innerHTML = `${recupTemp} °c`
+        selectTempCityTwo.prepend(createPTemp)
+
+        let createPName = document.createElement('p')
+        createPName.setAttribute('class', 'infos__name')
+        createPName.innerHTML = recupName
+        selectTempCityTwo.prepend(createPName)
+
+    })
+}
 
 selectContainerForm.addEventListener('keydown', event => {
     if (event.which === 13) {
@@ -168,5 +321,22 @@ selectContainerForm.addEventListener('keydown', event => {
         getForecast();
     }
 })
-
 selectFormInputButton.addEventListener('click', getForecast)
+
+selectButtonCompare.addEventListener('click', cityCompareDisplay)
+
+selectCityOne.addEventListener('keydown', event => {
+    if (event.which === 13) {
+        event.preventDefault();
+        cityCompareOne();
+    }
+})
+selectButtonCityOne.addEventListener('click', cityCompareOne)
+
+selectCityTwo.addEventListener('keydown', event => {
+    if (event.which === 13) {
+        event.preventDefault();
+        cityCompareTwo();
+    }
+})
+selectButtonCityTwo.addEventListener('click', cityCompareTwo)

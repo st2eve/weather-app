@@ -1,14 +1,79 @@
 body{
     
     main{
+        max-width: 850px;
+        min-width: 450px;
+        margin: auto;
+        display: grid;
+
+        h1{
+            text-align: center;
+        }
+
+        .main__button-compare{
+            width: 30px;
+            height: 36px;
+            border-radius: 15px;
+            justify-self: end;
+            margin-top: -438px;
+            display: none;
+        }
+
+        .main__button-compare:hover{
+            width: 105px;
+        }
+
+        .main__block-compare{
+            min-height: 390px;
+            margin-top: 50px;
+            border-radius: 15px;
+            border: 3px solid black;
+            box-shadow: 5px 5px black;
+            background-color: rgba(231, 231, 231, 0.5);
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+            display: none;
+
+            .compare__form-cityOne{
+                margin-top: 10%;
+                text-align: center;
+
+                .form__input-cityOne{
+                    border-radius: 15px;
+                    width: 60%;
+                    height: 30px;
+                }
+                .form__input-buttonOne-compare{
+                    @extend .form__input-cityOne;
+                    width: 30%;
+                    min-width: 70px;
+                    margin-top: 1%;
+                }
+            }
+
+            .compare__form-cityTwo{
+                @extend .compare__form-cityOne;
+                
+
+                .form__input-cityTwo{
+                    border-radius: 15px;
+                    width: 60%;
+                    height: 30px;
+                }
+                .form__input-buttonTwo-compare{
+                    @extend .form__input-cityTwo;
+                    width: 30%;
+                    min-width: 70px;
+                    margin-top: 1%;
+                }
+            }
+        }
 
         .main__container{
-
-            width: 500px;
-            height: 500px;
+            min-height: 390px;
             border: 3px solid black;
-            margin: auto;
-            margin-top: 100px;
+            margin-top: 50px;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 2rem;
@@ -17,42 +82,46 @@ body{
             background-size: cover;
             border-radius: 15px;
             box-shadow: 5px 5px black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             
 
             .container__form{
-                width: 500px;
-                height: 100px;
-                margin: auto;
+                max-width: 100%;
+                margin: 0;
+                padding-top: 5%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
-                background-color: rgb(0, 0, 0, 0.2);
+                //background-color: rgb(0, 0, 0, 0.2);
                 border-radius: 15px 15px 0 0;
 
                 .form__input-text{
-                    width: 300px;
+                    width: 50%;
                     height: 30px;
                     border-radius: 15px;
                 }
                 .form__input-button{
-                    width: 100px;
+                    width: 20%;
+                    min-width: 70px;
                     height: 36px;
                     border-radius: 15px;
                 }
             }
             .container__weather{
-                width: 500px;
-                height: 400px;
-                margin: auto;
+                max-width: 100%;
+                margin: 0;
                 display: flex;
+                justify-content: center;
                 flex-wrap: wrap;
-                background-color: rgb(0, 0, 0, 0.2);
+                //background-color: rgb(0, 0, 0, 0.2);
                 border-radius: 0 0 15px 15px;
 
                 .weather__temp{
                     margin: 0;
-                    width: 250px;
+                    width: 45%;
                     height: 100px;
                     display: flex;
                     justify-content: center;
@@ -62,14 +131,14 @@ body{
                     @extend .weather__temp;
                 }
                 .weather__infos{
-                    width:500px;
-                    height: 300px;
+                    width: 90%;
                     display: flex;
                     flex-wrap: wrap;
+                    justify-content: space-around;
                     margin: 0;
 
                     .infos__desc{
-                        width:250px;
+                        width: 45%;
                         height: 100px;
                         margin: 0;
                         display: flex;
@@ -110,6 +179,13 @@ body{
                 }
             }
 
+        }
+
+        .main__charts{
+            position: relative;
+            margin: auto;
+            height: 60%;
+            width: 80%;
         }
 
     }

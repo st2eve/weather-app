@@ -1,9 +1,64 @@
-body main .main__container {
-  width: 500px;
-  height: 500px;
-  border: 3px solid black;
+body main {
+  max-width: 850px;
+  min-width: 450px;
   margin: auto;
-  margin-top: 100px;
+  display: grid;
+}
+body main h1 {
+  text-align: center;
+}
+body main .main__button-compare {
+  width: 30px;
+  height: 36px;
+  border-radius: 15px;
+  justify-self: end;
+  margin-top: -438px;
+  display: none;
+}
+body main .main__button-compare:hover {
+  width: 105px;
+}
+body main .main__block-compare {
+  min-height: 390px;
+  margin-top: 50px;
+  border-radius: 15px;
+  border: 3px solid black;
+  -webkit-box-shadow: 5px 5px black;
+          box-shadow: 5px 5px black;
+  background-color: rgba(231, 231, 231, 0.5);
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  display: none;
+}
+body main .main__block-compare .compare__form-cityOne, body main .main__block-compare .compare__form-cityTwo {
+  margin-top: 10%;
+  text-align: center;
+}
+body main .main__block-compare .compare__form-cityOne .form__input-cityOne, body main .main__block-compare .compare__form-cityTwo .form__input-cityOne, body main .main__block-compare .compare__form-cityOne .form__input-buttonOne-compare, body main .main__block-compare .compare__form-cityTwo .form__input-buttonOne-compare {
+  border-radius: 15px;
+  width: 60%;
+  height: 30px;
+}
+body main .main__block-compare .compare__form-cityOne .form__input-buttonOne-compare, body main .main__block-compare .compare__form-cityTwo .form__input-buttonOne-compare {
+  width: 30%;
+  min-width: 70px;
+  margin-top: 1%;
+}
+body main .main__block-compare .compare__form-cityTwo .form__input-cityTwo, body main .main__block-compare .compare__form-cityTwo .form__input-buttonTwo-compare {
+  border-radius: 15px;
+  width: 60%;
+  height: 30px;
+}
+body main .main__block-compare .compare__form-cityTwo .form__input-buttonTwo-compare {
+  width: 30%;
+  min-width: 70px;
+  margin-top: 1%;
+}
+body main .main__container {
+  min-height: 390px;
+  border: 3px solid black;
+  margin-top: 50px;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 2rem;
@@ -13,11 +68,21 @@ body main .main__container {
   border-radius: 15px;
   -webkit-box-shadow: 5px 5px black;
           box-shadow: 5px 5px black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 body main .main__container .container__form {
-  width: 500px;
-  height: 100px;
-  margin: auto;
+  max-width: 100%;
+  margin: 0;
+  padding-top: 5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,34 +93,35 @@ body main .main__container .container__form {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 15px 15px 0 0;
 }
 body main .main__container .container__form .form__input-text {
-  width: 300px;
+  width: 50%;
   height: 30px;
   border-radius: 15px;
 }
 body main .main__container .container__form .form__input-button {
-  width: 100px;
+  width: 20%;
+  min-width: 70px;
   height: 36px;
   border-radius: 15px;
 }
 body main .main__container .container__weather {
-  width: 500px;
-  height: 400px;
-  margin: auto;
+  max-width: 100%;
+  margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 0 0 15px 15px;
 }
 body main .main__container .container__weather .weather__temp, body main .main__container .container__weather .weather__city {
   margin: 0;
-  width: 250px;
+  width: 45%;
   height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,17 +134,18 @@ body main .main__container .container__weather .weather__temp, body main .main__
           align-items: center;
 }
 body main .main__container .container__weather .weather__infos {
-  width: 500px;
-  height: 300px;
+  width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin: 0;
 }
 body main .main__container .container__weather .weather__infos .infos__desc, body main .main__container .container__weather .weather__infos .infos__wind {
-  width: 250px;
+  width: 45%;
   height: 100px;
   margin: 0;
   display: -webkit-box;
@@ -127,4 +194,10 @@ body main .main__container .container__weather .weather__infos .infos__nextdays 
   height: 30%;
   margin-bottom: 30%;
   display: none;
+}
+body main .main__charts {
+  position: relative;
+  margin: auto;
+  height: 60%;
+  width: 80%;
 }/*# sourceMappingURL=style.css.map */
