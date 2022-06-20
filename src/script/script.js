@@ -180,6 +180,7 @@ function getCityName(){
 
     resetContent()
 
+
     cityName = selectFormInputText.value
 
 
@@ -225,8 +226,8 @@ function getCityName(){
     
     selectButtonCompare.setAttribute('style', 'display: block')
     selectBlockCompare.setAttribute('style', 'display: none')
-    const selectTitle = document.querySelector('h1')
-    selectTitle.remove()
+    const selectTitle = document.querySelector('.main__title')
+    selectTitle.setAttribute('style', 'display: none')
     
 }
 
